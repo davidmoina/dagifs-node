@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
 import gifsRouter from './routes/gifs.routes';
+import userRouter from './routes/user.routes';
 
 const app = express();
 
@@ -20,5 +21,6 @@ app.use(
   })
 );
 app.use('/gifs', gifsRouter);
+app.use('/users', userRouter);
 
 export default app;
