@@ -5,4 +5,5 @@ export interface Gif {
   username: string;
   views: number;
   user?: string;
+  source: string;
 }

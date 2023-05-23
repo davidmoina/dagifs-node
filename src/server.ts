@@ -3,6 +3,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
+import gifsRouter from './routes/gifs.routes';
 
 const app = express();
 
@@ -14,9 +15,10 @@ app.use(
   fileUpload({
     useTempFiles: true,
     tempFileDir: './uploads/',
-    limits: { fileSize: 10000000 }, // 10MB max file(s) size
-    abortOnLimit: true // default: false (if true, files will not be uploaded and an error event will be emitted)
+    limits: { fileSize: 10000000 },
+    abortOnLimit: true
   })
 );
+app.use('/gifs', gifsRouter);
 
 export default app;

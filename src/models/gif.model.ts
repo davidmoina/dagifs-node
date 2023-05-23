@@ -7,7 +7,8 @@ const GifSchema = new Schema<Gif>({
   image_url: String,
   username: String,
   views: Number,
-  user: { type: Schema.Types.ObjectId, ref: 'User', default: null }
+  user: { type: Schema.Types.ObjectId, ref: 'User', default: null },
+  source: String
 });
 
 const GifModel = model('Gif', GifSchema);

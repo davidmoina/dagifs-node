@@ -6,7 +6,8 @@ const UserSchema = new Schema<User>({
   username: String,
   email: String,
   avatar_url: String,
-  rol: String
+  rol: String,
+  password: String
 });
 
 const UserModel = model('User', UserSchema);
