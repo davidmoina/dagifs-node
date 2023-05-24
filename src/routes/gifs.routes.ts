@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import {
   addGif,
+  editGif,
   getAllGifs,
   getFilteredGifs,
   getOneGif,
@@ -18,6 +19,7 @@ gifsRouter
   .get('/filter/:tag', getFilteredGifs)
   .get('/paginate', getPaginatedGifs)
   .get('/:id', getOneGif)
-  .post('/', addGif);
+  .post('/', addGif)
+  .patch('/:id', editGif);
 
 export default gifsRouter;

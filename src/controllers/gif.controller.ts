@@ -92,7 +92,8 @@ export const addGif = async (req: Request, res: Response) => {
         image_url,
         username,
         source,
-        user
+        user,
+        tags: tags ? tags.split(',') : null
       });
       res.status(200).send(newGif);
     }
@@ -125,6 +126,24 @@ export const getOneGif = async (req: Request, res: Response) => {
   try {
     const data = await GifModel.findById(id).populate('user').lean().exec();
     res.status(200).send(data);
+  } catch (error) {
+    res.status(500).send({ message: (error as Error).message });
+  }
+};
+
+export const editGif = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  const { title, description, source, tags } = req.body;
+
+  try {
+    const editedGif = await GifModel.findByIdAndUpdate(id, {
+      title,
+      description,
+      source,
+      tags: tags ? tags.split(',') : null
+    });
+    res.status(200).send(`Edited gif:  ${editedGif?.title} `);
   } catch (error) {
     res.status(500).send({ message: (error as Error).message });
   }
