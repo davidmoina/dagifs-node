@@ -1,9 +1,21 @@
 import { Router } from 'express';
-import { addGif, getAllGifs } from '../controllers/gif.controller';
+import {
+  addGif,
+  getAllGifs,
+  getFilteredGifs,
+  getPaginatedGifs,
+  getSearchResults,
+  getUserGifs
+} from '../controllers/gif.controller';
 
 const gifsRouter = Router();
 
-gifsRouter.get('/', getAllGifs);
-gifsRouter.post('/', addGif);
+gifsRouter
+  .get('/', getAllGifs)
+  .get('/user/:userId', getUserGifs)
+  .get('/filter/:tag', getFilteredGifs)
+  .get('/paginate', getPaginatedGifs)
+  .get('/search', getSearchResults)
+  .post('/', addGif);
 
 export default gifsRouter;
