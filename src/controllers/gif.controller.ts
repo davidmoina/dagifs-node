@@ -31,6 +31,7 @@ export const getPaginatedGifs = async (
 
   try {
     const data = await GifModel.paginate({}, { limit: 20, page: +page });
+
     res.status(200).send(data);
   } catch (error) {
     res.status(500).send({ status: false, message: (error as Error).message });
@@ -100,11 +101,8 @@ export const addGif = async (req: Request, res: Response) => {
   }
 };
 
-export const getSearchResults = async (
-  req: Request,
-  res: Response
-): Promise<void> => {
-  const { text } = req.query;
+export const getSearchResults = async (req: Request, res: Response) => {
+  const text = req.query.text;
 
   try {
     const gifs = await GifModel.find({
@@ -114,6 +112,19 @@ export const getSearchResults = async (
       .exec();
 
     res.status(200).send(gifs);
+  } catch (error) {
+    res.status(500).send({ message: (error as Error).message });
+  }
+};
+
+export const getOneGif = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  console.log(id);
+
+  try {
+    const data = await GifModel.findById(id).populate('user').lean().exec();
+    res.status(200).send(data);
   } catch (error) {
     res.status(500).send({ message: (error as Error).message });
   }
