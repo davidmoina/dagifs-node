@@ -148,3 +148,14 @@ export const editGif = async (req: Request, res: Response) => {
     res.status(500).send({ message: (error as Error).message });
   }
 };
+
+export const deleteGif = async (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  try {
+    const editedGif = await GifModel.findByIdAndDelete(id);
+    res.status(200).send(`Deleted gif:  ${editedGif?.title} `);
+  } catch (error) {
+    res.status(500).send({ message: (error as Error).message });
+  }
+};
