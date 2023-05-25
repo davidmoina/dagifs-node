@@ -3,6 +3,7 @@ import GifModel from '../models/gif.model';
 import { ImageRequest } from '../interfaces/files';
 import { uploadImage } from '../utils/cloudinaryUpload';
 import fs from 'fs-extra';
+import UserModel from '../models/user.model';
 
 interface RequestParams {}
 
@@ -40,7 +41,6 @@ export const getPaginatedGifs = async (
 
 export const getFilteredGifs = async (req: Request, res: Response) => {
   const { tag } = req.params;
-  console.log(tag);
 
   try {
     const data = await GifModel.find({ tags: tag }).lean().exec();
@@ -55,7 +55,12 @@ export const getUserGifs = async (req: Request, res: Response) => {
 
   try {
     const data = await GifModel.find({ user: userId }).lean().exec();
-    res.status(200).send({ data: data });
+    const userFavorites = await UserModel.findById(userId, { favorites: 1 })
+      .populate('favorites')
+      .lean()
+      .exec();
+
+    res.status(200).send({ data: data, favorites: userFavorites?.favorites });
   } catch (error) {
     res.status(500).send({ message: (error as Error).message });
   }
@@ -120,8 +125,6 @@ export const getSearchResults = async (req: Request, res: Response) => {
 
 export const getOneGif = async (req: Request, res: Response) => {
   const { id } = req.params;
-
-  console.log(id);
 
   try {
     const data = await GifModel.findById(id).populate('user').lean().exec();

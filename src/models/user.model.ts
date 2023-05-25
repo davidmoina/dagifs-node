@@ -9,7 +9,7 @@ const UserSchema = new Schema<User>(
     avatar_url: { type: String, default: null },
     rol: { type: String, default: null },
     password: String,
-    favorites: [{ type: Schema.Types.ObjectId, default: null }]
+    favorites: [{ type: Schema.Types.ObjectId, ref: 'Gif', default: null }]
   },
   {
     timestamps: true
