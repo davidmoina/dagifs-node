@@ -1,6 +1,6 @@
-# DAGIFS Backend
+# dagifs-node
 
-This is the backend code for the [DAGIFS](https://github.com/davidmoina/dagifs-react) application. It provides the logic and functionality needed to support the features of the [DAGIFS](https://github.com/davidmoina/dagifs-react) application. The backend is developed using TypeScript, Node.js, Express, Axios, Cloudinary, Mongoose Paginate v2, and follows the Model-View-Controller (MVC) design pattern.
+This is the backend code for the [dagifs-react](https://github.com/davidmoina/dagifs-react) application. It provides the logic and functionality needed to support the features of the [dagifs-react](https://github.com/davidmoina/dagifs-react) application. The backend is developed using TypeScript, Node.js, Express, Axios, Cloudinary, Mongoose Paginate v2, and follows the Model-View-Controller (MVC) design pattern.
 
 This backend has been developed in a period of 3 days for a technical test simulation together with dagifs-react which is the code for the frontend.
 
@@ -15,7 +15,7 @@ This backend has been developed in a period of 3 days for a technical test simul
 
 ## ⚙️ Installation
 
-1.  Clone the DAGIFS backend repository to your local machine.
+1.  Clone the dagifs-node repository to your local machine.
     
     ```shell
     git clone https://github.com/davidmoina/dagifs-node.git
@@ -45,4 +45,4 @@ This backend has been developed in a period of 3 days for a technical test simul
 
 ## ✨ Credits
 
-The DAGIFS backend is developed by [David Moina](https://github.com/davidmoina).
+The dagifs-node is developed by [David Moina](https://github.com/davidmoina).
